@@ -13,24 +13,7 @@
 <body>
 
     <div id='app'>
-        <div class="input-group px-2 py-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">背景噪音</span>
-            </div>
-            <input type="text" class="form-control" placeholder="請輸入分貝值" aria-label="Username"
-                aria-describedby="basic-addon1" v-model='dB1'>
-        </div>
-        <div class="input-group px-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">管制標準</span>
-            </div>
-            <input type="text" class="form-control" placeholder="請輸入分貝值" aria-label="Username"
-                aria-describedby="basic-addon1" v-model="dB2">
-        </div>
-        <div class="mx-2 my-2">
-            <button type="submit" class="btn btn-primary" v-on:click='Calculation'><i
-                    class="fas fa-angle-double-right"></i></button>
-        </div>
+
         <div class="list-group list-group-horizontal px-2" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-1-list" data-toggle="list" href="#list-1"
                 role="tab" aria-controls="1">工廠</a>
@@ -60,6 +43,25 @@
                 <img src="./img/其他公告.png" class="img-fluid rounded mx-auto d-block max-width:100% height: auto" alt="Responsive image">
             </div>
         </div>
+    </div>
+
+    <div class="input-group px-2 py-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">背景噪音</span>
+        </div>
+        <input type="text" class="form-control" placeholder="請輸入分貝值" aria-label="Username"
+            aria-describedby="basic-addon1" v-model='dB1'>
+    </div>
+    <div class="input-group px-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">管制標準</span>
+        </div>
+        <input type="text" class="form-control" placeholder="請輸入分貝值" aria-label="Username"
+            aria-describedby="basic-addon1" v-model="dB2">
+    </div>
+    <div class="mx-2 my-2">
+        <button type="submit" class="btn btn-primary" v-on:click='Calculation'><i
+                class="fas fa-angle-double-right"></i></button>
     </div>
 
     <script src="./vue.js"></script>
