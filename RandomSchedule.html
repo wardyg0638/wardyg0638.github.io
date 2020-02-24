@@ -11,46 +11,47 @@
 <body>
     <div id="app">
         <button type="button" class="btn btn-primary" v-on:click="random_members">Primary</button>
-        {{personnel}}{{test}}
+        <p v-for="personnel in personnel">{{personnel}}</p>
+        {{Number_of_People}}
+
     </div>
     <script src="./vue.js">
     </script>
 
     <script>
-        new Vue({
+        var vm = new Vue({
             el: '#app',
             data: {
                 Number_of_People: 4,
                 personnel: [
-                    "張文京",
-                    "謝師宇",
-                    "郭傳豪",
-                    "吳家瑜"
+                    "張",
+                    "文",
+                    "京"
                 ],
                 test: ''
             },
             methods: {
                 random_members() {
-                    let r1 = Math.floor(Math.random() * (this.Number_of_People))
-                    let r2 = Math.floor(Math.random() * (this.Number_of_People))
+                    let r1 = Math.floor(Math.random() * (this.personnel.length));
+                    let r2 = Math.floor(Math.random() * (this.personnel.length));
+
                     let storage = this.personnel[r1]
+                    Vue.set(vm.personnel,r1,this.personnel[r2])
+                    Vue.set(vm.personnel,r2,storage)
 
-
-                    this.personnel[r1] = this.personnel[r2]
-                    this.personnel[r2] = storage
-                    this.test = this.personnel[r1]
+                    this.Number_of_People=2
                 }
 
             },
             created() {
-                let r1 = Math.floor(Math.random() * (this.Number_of_People))
-                let r2 = Math.floor(Math.random() * (this.Number_of_People))
-                let storage = this.personnel[r1]
+                let r1 = Math.floor(Math.random() * (this.personnel.length));
+                let r2 = Math.floor(Math.random() * (this.personnel.length));
+                let storage = this.personnel[r1];
 
 
-                this.personnel[r1] = this.personnel[r2]
-                this.personnel[r2] = storage
-                this.test = this.personnel[r1]
+                this.personnel[r1] = this.personnel[r2];
+                this.personnel[r2] = storage;
+                this.test = this.personnel[r1];
 
             }
         })
