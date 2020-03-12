@@ -24,22 +24,34 @@
             data: {
                 Number_of_People: 4,
                 personnel: [
-                    "張",
-                    "文",
-                    "京"
+                    "張文京",
+                    "謝師宇",
+                    "陳家翰",
+                    "游昇峰",
+                    "鄭靜融",
+                    "陳仁德",
+                    
                 ],
                 test: ''
             },
             methods: {
                 random_members() {
-                    let r1 = Math.floor(Math.random() * (this.personnel.length));
-                    let r2 = Math.floor(Math.random() * (this.personnel.length));
+                    for (i = 0; i < 1000; i++) {
+                        let r1 = Math.floor(Math.random() * (this.personnel.length));
+                        let r2 = Math.floor(Math.random() * (this.personnel.length));
+                        let r3 = Math.floor(Math.random() * (this.personnel.length));
+                        let r4 = Math.floor(Math.random() * (this.personnel.length));
+                        let r5 = Math.floor(Math.random() * (this.personnel.length));
+                        let storage = this.personnel[r1]
+        
+                        Vue.set(vm.personnel, r1, this.personnel[r2])
+                        Vue.set(vm.personnel, r2, this.personnel[r3])
+                        Vue.set(vm.personnel, r3, this.personnel[r4])
+                        Vue.set(vm.personnel, r4, this.personnel[r5])
+                        Vue.set(vm.personnel, r5, storage)
 
-                    let storage = this.personnel[r1]
-                    Vue.set(vm.personnel,r1,this.personnel[r2])
-                    Vue.set(vm.personnel,r2,storage)
-
-                    this.Number_of_People=2
+                        this.Number_of_People = 2
+                    }
                 }
 
             },

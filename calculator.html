@@ -67,24 +67,7 @@
         </div>
     </div>
     <script src="./vue.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                value: '',
-                dB1: '',
-                dB2: ''
-            },
-            methods: {
-                Calculation() {
-                    var h = `${this.dB1}`;
-                    var w = `${this.dB2}`;
-                    var t = 10 * ((Math.log(Math.pow(10, (0.1 * h)) + Math.pow(10, (0.1 * w)))) / (Math.log(10)));
-                    this.value = t
-                }
-            },
-        })
-    </script>
+    <script src="./calculator.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
