@@ -96,18 +96,57 @@
                     }
                 },
                 sch() {
-                    let r = Math.floor(Math.random() * (this.DayMembers[0].length))
-                    let randomName = this.schedule[0][0] = this.DayMembers[0][r]
 
-                    this.DayMembers[0].splice(r, 1)
+                    for (i = 0; i < 2; i++) {
 
-                    var findMemberIndex = this.members.findIndex(function (item) {
-                        return item.Name === randomName;
-                    });
-                    console.log(findMemberIndex)
 
-                    this.members[findMemberIndex].Onduty.host.day.north = this.members[findMemberIndex].Onduty.host.day.north + 1
+                        var max = this.maxvalue(this.members)
+
+                        var filterAgeThan5 = this.members.filter(function (items) {
+                            return items.Onduty.host.day.north < max;
+                        });
+                        console.log(filterAgeThan5);
+
+
+
+                        let r = Math.floor(Math.random() * (this.DayMembers[i].length))
+                        
+                        //console.log(max);
+
+
+
+
+
+                      //  console.log(this.maxvalue(this.members))
+
+
+
+                        let randomName = this.schedule[i][0] = this.DayMembers[i][r]
+
+                        this.DayMembers[i].splice(r, 1)
+
+                        var findMemberIndex = this.members.findIndex(function (item) {
+                            return item.Name === randomName;
+                        });
+                        //        console.log(findMemberIndex)
+
+                        this.members[findMemberIndex].Onduty.host.day.north = this.members[findMemberIndex].Onduty.host.day.north + 1
+
+                    }
+
+
+                },
+
+                maxvalue(obj) {
+                    var max = 0
+                    obj.forEach(function (ele, index, arr) {
+                        if (ele.Onduty.host.day.north > max) {
+                            max = ele.Onduty.host.day.north;
+                        }
+                    })
+                    return max;
                 }
+
             }
         })
     </script>
