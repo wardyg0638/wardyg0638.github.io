@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +34,7 @@
                 <p v-for="member in DayMembers[0]">{{member}}</p>
             </div>
         </div>
+        <button type="button" class="btn btn-primary" v-on:click="sch()">Primary</button>
     </div>
 
     <script src="./vue.js">
@@ -74,7 +74,7 @@
                     ["張文京", "賴星豪", "謝師宇", "陳仁德", "吳家瑜", "林怡禎", "蕭智隆", "郭傳豪", "蔡維哲", "鄭敬融", "李振華", "廖毓鈴", "王夢歆"],
                     ["賴星豪", "蕭智隆", "宋狄軒", "游昇峰", "林怡禎", "廖毓鈴", "陳仁德", "蔡維哲", "王夢歆", "郭傳豪", "謝師宇", "鄭敬融", "李振華"],
                 ]
-    
+
 
 
             },
@@ -94,6 +94,19 @@
                         Vue.set(x, r4, x[r5])
                         Vue.set(x, r5, storage)
                     }
+                },
+                sch() {
+                    let r = Math.floor(Math.random() * (this.DayMembers[0].length))
+                    let randomName = this.schedule[0][0] = this.DayMembers[0][r]
+
+                    this.DayMembers[0].splice(r, 1)
+
+                    var findMemberIndex = this.members.findIndex(function (item) {
+                        return item.Name === randomName;
+                    });
+                    console.log(findMemberIndex)
+
+                    this.members[findMemberIndex].Onduty.host.day.north = this.members[findMemberIndex].Onduty.host.day.north + 1
                 }
             }
         })
