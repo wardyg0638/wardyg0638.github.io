@@ -67,28 +67,7 @@
                 ],
 
                 DayMembers: [
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
+                    ["張文京", "賴星豪", "謝師宇", "陳仁德", "吳家瑜", "林怡禎", "蕭智隆", "郭傳豪", "蔡維哲", "鄭敬融", "李振華", "廖毓鈴", "王夢歆", "蔡維哲", "鄭敬融", "李振華", "廖毓鈴", "王夢歆"],
                     [],
                     [],
                     [],
@@ -190,15 +169,20 @@
                 },
                 sch() {
 
-                    for (i = 0; i < 31; i++) { 
-                        //每日上班稽查員名單
+                    for (i = 0; i < 31; i++) {
+
+
                         var DayMembers = this.DayMembers
                         var maxvalue = this.maxvalue(this.members)
-                        //console.log(maxvalue);
+                        console.log(maxvalue);
+
                         var filterworkmembers = this.members.filter(function (items) {
-                            return items.Workday[i] === 1;
+                            return items.Workday[0] === 1;
                         });
+
+
                         //console.log(filterworkdaymax);
+
                         if (filterworkdaymax === 0) {
                             maxvalue = maxvalue + 1
                             var filterworkdaymax = filterworkmembers.filter(function (items) {
@@ -209,28 +193,40 @@
                             var filterworkdaymax = filterworkmembers.filter(function (items) {
                                 return items.Onduty.host.day.north < maxvalue;
                             });
+
                         }
-                        //console.log(this.maxvalue(this.members))
-                        filterworkmembers.forEach(function (items, index, arr) {
+
+
+                        filterworkdaymax.forEach(function (items, index, arr) {
                             DayMembers[i][index] = items.Name;
+                            // console.log(DayMembers[0])
                         });
-                        //console.log(DayMembers[i])
-                    } 
 
 
-                    for (i = 0; i < 31; i++) {
-                        //日班溪北主辦隨機
-                        let r = Math.floor(Math.random() * (DayMembers[i].length))
-                        //console.log(r)
-                        let randomName = this.schedule[i][0] = DayMembers[i][r]
-                        DayMembers[i].splice(r, 1)
+
+
+                        let r = Math.floor(Math.random() * (this.DayMembers[i].length))
+
+
+                        //  console.log(this.maxvalue(this.members))
+
+
+
+                        let randomName = this.schedule[i][0] = this.DayMembers[i][r]
+
+                        this.DayMembers[i].splice(r, 1)
+
                         var findMemberIndex = this.members.findIndex(function (item) {
                             return item.Name === randomName;
                         });
-                        //console.log(findMemberIndex)
+                        //        console.log(findMemberIndex)
+
                         this.members[findMemberIndex].Onduty.host.day.north = this.members[findMemberIndex].Onduty.host.day.north + 1
-                        //console.log(this.schedule[i][0])
+                        console.log(this.schedule[i][0])
+
                     }
+
+
                 },
 
                 maxvalue(obj) {
