@@ -193,22 +193,17 @@
                     for (i = 0; i < 31; i++) {
                         //每日上班稽查員名單
                         var DayMembers = this.DayMembers
-                        var maxvalue = this.maxvalue(this.members)
+                        var maxvalue = this.maxvalue()
                         //console.log(maxvalue);
                         var filterworkmembers = this.members.filter(function (items) {
                             return items.Workday[i] === 1;
                         });
                         //console.log(filterworkdaymax);
-                        if (filterworkdaymax === 0) {
+                        var filterworkdaymax = filterworkmembers.filter(function (items) {
+                            return items.Onduty.host.day.north < maxvalue;
+                        });
+                        if (filterworkdaymax.length === 0) {
                             maxvalue = maxvalue + 1
-                            var filterworkdaymax = filterworkmembers.filter(function (items) {
-                                return items.Onduty.host.day.north < maxvalue;
-                            });
-                        }
-                        else {
-                            var filterworkdaymax = filterworkmembers.filter(function (items) {
-                                return items.Onduty.host.day.north < maxvalue;
-                            });
                         }
                         //console.log(this.maxvalue(this.members))
                         filterworkmembers.forEach(function (items, index, arr) {
@@ -231,11 +226,13 @@
                         this.members[findMemberIndex].Onduty.host.day.north = this.members[findMemberIndex].Onduty.host.day.north + 1
                         //console.log(this.schedule[i][0])
                     }
+
+
                 },
 
-                maxvalue(obj) {
+                maxvalue() {
                     var max = 1
-                    obj.forEach(function (ele, index, arr) {
+                    this.members.forEach(function (ele, index, arr) {
                         if (ele.Onduty.host.day.north > max) {
                             max = ele.Onduty.host.day.north;
                         }
